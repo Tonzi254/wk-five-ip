@@ -40,7 +40,7 @@ Creating and running your application
 6. Test the CRUD database operations using Postman or CURL on CLI
 
 
-#Technologies Used
+# Technologies Used
 
 1. JavaScript
 2. NodeJS
