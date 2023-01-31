@@ -10,7 +10,7 @@
 4. Josephat OleShangti
 
 
-# Intallation
+# Installation
 
 Project Requirements
 ====================
@@ -53,11 +53,13 @@ Creating and running your application
 9. nodemon
 10. dotEnv
 
+
 # Contact Information
 
 Incase you have any question or contributions you can reach out to me via email me at danteskilz@gmail.com
 I will try and respons as soon as possible. Thank you!
 
-#License
-https://github.com/Tonzi254/wk-five-ip
+
+# License
+https://github.com/Tonzi254/wk-five-ip/blob/main/LICENSE
 
