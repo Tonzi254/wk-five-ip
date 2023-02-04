@@ -8,14 +8,9 @@ const router= express.Router();
 //CRUD routes
 
 //Create
-
-// router.post('/students', (req, res)=>{ 
-//     res.send('POST');
-// });
 router.post('/students', (req, res) => {
 	try {
 		let { student_no, first_name, last_name, grade, course } = req.body;
-        console.log(req.body)
 		let _id = mongoose.Types.ObjectId(); // Generating new MongoDB _ID
 
 		Student.create({_id,student_no,first_name, last_name,grade, course }, (err, student) => {
@@ -32,9 +27,6 @@ router.post('/students', (req, res) => {
 
 //Read
 
-// router.get('/students', (req, res)=>{ 
-//     res.send('GET');
-// });
 /**
  * Find all students
  */
@@ -56,12 +48,8 @@ router.get('/students', (req, res) => {
 
 //Update
 
-// router.patch('/students/:id', (req, res)=>{ 
-//     res.send('UPDATE');
-// });
-
 /**
- * @description Update student
+ * Update student
  */
 router.put('/students', (req, res) => {
 	try {
@@ -86,17 +74,11 @@ router.put('/students', (req, res) => {
 
 
 //Delete
-
-// router.delete('/students/:id', (req, res)=>{ 
-//     res.send('DELETE');
-// });
-
 /**
- * @description Delete student
+ * Delete student
  */
 router.delete('/students', (req, res) => {
 	try {
-        console.log(req.body._id)
 		const _id = req.body._id || null;
 		// Remove student by it's _ID
 		if (_id) {
