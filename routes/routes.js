@@ -1,5 +1,6 @@
 const express = require('express');
 const Student = require('../models/models');
+const mongoose= require('mongoose');
 
 const router= express.Router();
 
@@ -14,10 +15,10 @@ const router= express.Router();
 router.post('/students', (req, res) => {
 	try {
 		let { student_no, first_name, last_name, grade, course } = req.body;
-        console.log(req.body);
+        console.log(req.body)
 		let _id = mongoose.Types.ObjectId(); // Generating new MongoDB _ID
 
-		Student.save({ _id:_id, student_no: req.body.student_no,first_name: req.body.first_name, last_name: req.body.last_name,grade: req.body.grade, course: req.body.course }, (err, student) => {
+		Student.create({_id,student_no,first_name, last_name,grade, course }, (err, student) => {
 			// Error returned
 			if (err) res.status(400).json({ error: "Invalid request, something went wrong!", err });
 			// Everything OK
