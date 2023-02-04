@@ -56,9 +56,34 @@ router.get('/students', (req, res) => {
 
 //Update
 
-router.patch('/students/:id', (req, res)=>{ 
-    res.send('UPDATE');
+// router.patch('/students/:id', (req, res)=>{ 
+//     res.send('UPDATE');
+// });
+
+/**
+ * @description Update student
+ */
+router.put('/students', (req, res) => {
+	try {
+		let {_id,student_no, first_name, last_name, grade, course } = req.body;
+
+		// Find the student by it's ID and update it
+		Student.findByIdAndUpdate(
+			_id,
+			{ $set: { student_no, first_name, last_name, grade, course }},
+			{ new: true },
+			(err, student) => {
+				// Something wrong happens
+				if (err) res.status(400).json({ success: false, error: "Can't update student!" });
+				// Everything OK
+				res.json({ success: true, student });
+			}
+		);
+	} catch (e) {
+		res.status(401).json({ error: "Unauthorized action!" });
+	}
 });
+
 
 //Delete
 
