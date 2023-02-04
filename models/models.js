@@ -2,7 +2,8 @@ const mongoose= require('mongoose');
 
 //Create the Schema
 
-const studentSchema = new moongose.Schema({
+const studentSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     student_no: {
         required: true,
         type: String,
@@ -26,4 +27,4 @@ const studentSchema = new moongose.Schema({
 
 });
 
-module.exports = moongose.model('Student', studentSchema)
+module.exports = mongoose.model('Student', studentSchema)
