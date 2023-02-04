@@ -87,8 +87,31 @@ router.put('/students', (req, res) => {
 
 //Delete
 
-router.delete('/students/:id', (req, res)=>{ 
-    res.send('DELETE');
+// router.delete('/students/:id', (req, res)=>{ 
+//     res.send('DELETE');
+// });
+
+/**
+ * @description Delete student
+ */
+router.delete('/students', (req, res) => {
+	try {
+        console.log(req.body._id)
+		const _id = req.body._id || null;
+		// Remove student by it's _ID
+		if (_id) {
+			Student.deleteOne({ _id }, err => {
+				// Something wrong happens
+				if (err) res.status(400).json({ success: false, error: "Can't remove student!" });
+				// Everything OK
+				res.json({ success: "Student record deleted successfully"});
+			});
+		} else {
+			res.status(400).json({ error: "Identifier required to perform this action!" });
+		}
+	} catch (e) {
+		res.status(401).json({ error: "Unauthorized action!" });
+	}
 });
 
 module.exports= router;
