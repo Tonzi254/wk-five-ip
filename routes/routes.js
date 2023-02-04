@@ -1,8 +1,7 @@
 const express = require('express');
-const Student = require('../models/model');
+const Student = require('./models/models');
 
 const router= express.Router();
-module.exports= router;
 
 //CRUD routes
 
@@ -29,3 +28,6 @@ router.patch('/students/:id', (req, res)=>{
 router.delete('/students/:id', (req, res)=>{ 
     res.send('DELETE');
 });
+
+module.exports= router;
+
