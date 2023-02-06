@@ -1,4 +1,4 @@
-const mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
 //Create the Schema
 
@@ -23,6 +23,9 @@ const studentsSchema = new mongoose.Schema({
         required: false,
         type: String,
         default: "DevOps",
+    },
+    __v: {
+        versionKey: false
     },
 
 });
