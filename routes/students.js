@@ -64,14 +64,33 @@ router.patch('/', async (req, res) => {
 
 router.delete('/id', async (req, res) => {
 
-    try {
-        const id = req.params.id;
+//     try {
+//         const id = req.params.id;
 
-        const data = await student.findByIdAndDelete(id);
-        res.status(204).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted` });
-    } catch (error) {
-        res.status(404).json({ message: error.message });
+//         const data = await student.findByIdAndDelete(id);
+//         res.status(204).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted` });
+//     } catch (error) {
+//         res.status(404).json({ message: error.message });
+//     }
+// });
+
+try {
+    const id = req.body._id || null;
+    // Remove student by it's _ID
+    if (id) {
+        student.deleteOne({ id }, error => {
+            // Something wrong happens
+            if (error) res.status(400).json({ success: false, error: "Can't remove student!" });
+            // Everything OK
+            res.status(200).json({ success: "Student record deleted successfully" });
+        });
+    } else {
+        res.status(400).json({ error: "Identifier required to perform this action!" });
     }
+} catch (error) {
+    res.status(401).json({ error: "Unauthorized action!" });
+}
+
 });
 
 
