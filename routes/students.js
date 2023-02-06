@@ -31,19 +31,38 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/_:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        const updatedData = req.body;
+router.patch('/', async (req, res) => {
+    // try {
+    //     const id = req.params.id;
+    //     const updatedData = req.body;
 
-        const data = await student.findByIdAndUpdate(id, updatedData, { new: true });
-        res.status(200).json(data);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
+    //     const data = await student.findByIdAndUpdate(id, updatedData, { new: true });
+    //     res.status(200).json(data);
+    // } catch (error) {
+    //     res.status(404).json({ message: error.message });
+    // }
+
+    try {
+		let { _id, student_no, first_name, last_name, grade, course } = req.body;
+
+		// Find the student by it's ID and update it
+		student.findByIdAndUpdate(
+			_id,
+			{ $set: { student_no, first_name, last_name, grade, course } },
+			{ new: true },
+			(error, student) => {
+				// Something wrong happens
+				if (err) res.status(400).json({ success: false, error: "Can't update student!" });
+				// Everything OK
+				res.status(200).json({ success: true, student });
+			}
+		);
+	} catch (error) {
+		res.status(401).json({ error: "Unauthorized action!" });
+	}
 });
 
-router.delete('/_:id', async (req, res) => {
+router.delete('/id', async (req, res) => {
 
     try {
         const id = req.params.id;
