@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/students/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -50,7 +50,7 @@ router.patch('/students/:id', async (req, res) => {
     }
 });
 
-router.delete('/students/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
 
     try {
         const id = req.params.id;
