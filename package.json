@@ -1,7 +1,7 @@
 {
   "name": "week-five-ip",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. Daniel Rotich\r 2. Grace  Nyambura\r 3. Mildred Awuor\r 4. Josephat OleShangti",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,8 +20,10 @@
   "homepage": "https://github.com/Tonzi254/wk-five-ip#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "download": "^8.0.0",
     "express": "^4.18.2",
-    "mongoose": "^6.9.0"
+    "mongoose": "^6.9.0",
+    "moongose": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
