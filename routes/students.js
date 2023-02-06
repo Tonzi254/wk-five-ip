@@ -32,65 +32,24 @@ router.get('/', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
-    // try {
-    //     const id = req.params.id;
-    //     const updatedData = req.body;
-
-    //     const data = await student.findByIdAndUpdate(id, updatedData, { new: true });
-    //     res.status(200).json(data);
-    // } catch (error) {
-    //     res.status(404).json({ message: error.message });
-    // }
-
+    const id = req.params.id;
+    const updatedData = req.body;
     try {
-		let { _id, student_no, first_name, last_name, grade, course } = req.body;
-
-		// Find the student by it's ID and update it
-		student.findByIdAndUpdate(
-			_id,
-			{ $set: { student_no, first_name, last_name, grade, course } },
-			{ new: true },
-			(error, student) => {
-				// Something wrong happens
-				if (error) res.status(400).json({ succcess: false, error: `Can't update student!` });
-				// Everything OK
-				res.status(200).json({ success: true, message: `Student record updated successfully` });
-			}
-		);
-	} catch (error) {
-		res.status(401).json({ error: "Unauthorized action!" });
-	}
+        const dataUpdate = await student.findByIdAndUpdate(id, updatedData, { new: true });
+        res.status(200).json(dataUpdate);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 });
 
 router.delete('/', async (req, res) => {
-
-//     try {
-//         const id = req.params.id;
-
-//         const data = await student.findByIdAndDelete(id);
-//         res.status(204).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted` });
-//     } catch (error) {
-//         res.status(404).json({ message: error.message });
-//     }
-// });
-
-try {
-    const id = req.body._id || null;
-    // Remove student by it's _ID
-    if (id) {
-        student.deleteOne({ id }, error => { error
-            // Something wrong happens
-            if (error) res.status(400).json({ success: false, error: "Can't remove student!" });
-            // Everything OK
-            res.status(200).json({ success: true, message: `Student record deleted successfully` });
-        });
-    } else {
-        res.status(400).json({ error: "Identifier required to perform this action!" });
+    const id = req.params.id;
+    try {
+        const dataDelete = await student.findByIdAndDelete(id);
+        res.status(200).json(dataDelete);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
-} catch (error) {
-    res.status(401).json({ error: "Unauthorized action!" });
-}
-
 });
 
 
