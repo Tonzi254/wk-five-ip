@@ -52,9 +52,9 @@ router.patch('/', async (req, res) => {
 			{ new: true },
 			(error, student) => {
 				// Something wrong happens
-				if (err) res.status(400).json({ success: false, error: "Can't update student!" });
+				if (error) res.status(400).json({ succcess: false, error: `Can't update student!` });
 				// Everything OK
-				res.status(200).json({ success: true, student });
+				res.status(200).json({ success: true, message: `Student record updated successfully` });
 			}
 		);
 	} catch (error) {
@@ -62,7 +62,7 @@ router.patch('/', async (req, res) => {
 	}
 });
 
-router.delete('/id', async (req, res) => {
+router.delete('/', async (req, res) => {
 
 //     try {
 //         const id = req.params.id;
@@ -78,11 +78,11 @@ try {
     const id = req.body._id || null;
     // Remove student by it's _ID
     if (id) {
-        student.deleteOne({ id }, error => {
+        student.deleteOne({ id }, error => { error
             // Something wrong happens
             if (error) res.status(400).json({ success: false, error: "Can't remove student!" });
             // Everything OK
-            res.status(200).json({ success: "Student record deleted successfully" });
+            res.status(200).json({ success: true, message: `Student record deleted successfully` });
         });
     } else {
         res.status(400).json({ error: "Identifier required to perform this action!" });
