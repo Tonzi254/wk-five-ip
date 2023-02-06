@@ -27,7 +27,7 @@ database.once('connected', () => {
 const app = express();
 
 app.use(express.json());
-app.use('/', indexroutes);
+app.use('/', routes);
 
 
 app.listen(port, () => {
