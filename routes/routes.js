@@ -1,99 +1,61 @@
 const express = require('express');
-const mongoose= require('mongoose');
-const Student = require('../routes/routes');
 
-const router= express.Router();
+const students = require ('./../models/models');
 
 
-//CRUD routes
+const router = express.Router();
 
-//Create
-router.post('/students', async (req, res) => {
-	try {
-		let { student_no, first_name, last_name, grade, course } = req.body;
-		let _id = mongoose.Types.ObjectId(); // Generating new MongoDB _ID
 
-		Student.create({_id,student_no,first_name, last_name,grade, course }, (err, student) => {
-			// Error returned
-			if (err) res.status(400).json({ error: "Invalid request, something went wrong!", err });
-			// Everything OK
-			res.status(201).json({ success: true, student });
-		});
-	} catch (e) {
-		res.status(401).json({ error: "Unauthorized action!" });
-	}
+router.post('/', async function (req, res) {
+    const studentsData = new students({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+		grade: req.body.grade,
+		course: req.body.course,
+    });
+
+    try {
+        const saveData = await data.save();
+        res.status(200).json(saveData);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
-
-//Read
-
-/**
- * Find all students
- */
-router.get('/students', async (req, res) => {
-	try {
-		Student.find({}, (err, students) => {
-			// Error returned
-			if (err) res.status(400).json({ error: "Invalid request, something went wrong!" });
-			// Invalid data received
-			if (!students) res.status(401).json({ error: "Unauthorized action!" });
-			// Everything OK
-			res.json({ success: true, students });
-		});
-	} catch (e) {
-		res.status(401).json({ error: "Unauthorized action!" });
-	}
-})
-
-
-//Update
-
-/**
- * Update student
- */
-router.patch('/students', async (req, res) => {
-	try {
-		let {_id,student_no, first_name, last_name, grade, course } = req.body;
-
-		// Find the student by it's ID and update it
-		Student.findByIdAndUpdate(
-			_id,
-			{ $set: { student_no, first_name, last_name, grade, course }},
-			{ new: true },
-			(err, student) => {
-				// Something wrong happens
-				if (err) res.status(400).json({ success: false, error: "Can't update student!" });
-				// Everything OK
-				res.json({ success: true, student });
-			}
-		);
-	} catch (e) {
-		res.status(401).json({ error: "Unauthorized action!" });
-	}
+router.get('/', async function (req, res) {
+    try {
+        const data = await students.find();
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
+router.patch('/:id', async function (req, res) {
+    const id = req.params.id;
+    const updatedData = req.body;
+    console.log(id)
+    console.log(updatedData)
 
-//Delete
-/**
- * Delete student
- */
-router.delete('/students', async (req, res) => {
-	try {
-		const _id = req.body._id || null;
-		// Remove student by it's _ID
-		if (_id) {
-			Student.deleteOne({ _id }, err => {
-				// Something wrong happens
-				if (err) res.status(400).json({ success: false, error: "Can't remove student!" });
-				// Everything OK
-				res.json({ success: "Student record deleted successfully"});
-			});
-		} else {
-			res.status(400).json({ error: "Identifier required to perform this action!" });
-		}
-	} catch (e) {
-		res.status(401).json({ error: "Unauthorized action!" });
-	}
+    try {
+        const dataUpdate = await students.findByIdAndUpdate(id, updatedData, { new: true });
+        res.status(200).json(dataUpdate);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
-module.exports= router;
+router.delete('/:id', async function (req, res) {
+    const id = req.params.id;
+    try {
+        const dataDelete = await students.findByIdAndDelete(id);
+        res.status(200).json(dataDelete);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+module.exports = router;
+
+
+

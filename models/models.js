@@ -2,11 +2,10 @@ const mongoose= require('mongoose');
 
 //Create the Schema
 
-const studentSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+const studentsSchema = new mongoose.Schema({
     student_no: {
         required: true,
-        type: String,
+        type: Number,
     },
     first_name: {
         required: true,
@@ -22,9 +21,10 @@ const studentSchema = new mongoose.Schema({
     },
     course: {
         required: false,
-        type: String
+        type: String,
+        default: Mathematics,
     },
 
 });
 
-module.exports = mongoose.model('Student', studentSchema)
+module.exports = mongoose.model('students', studentsSchema)
