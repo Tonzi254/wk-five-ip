@@ -22,7 +22,7 @@ const studentsSchema = new mongoose.Schema({
     course: {
         required: false,
         type: String,
-        default: Mathematics,
+        default: "Mathematics",
     },
 
 });
