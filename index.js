@@ -7,7 +7,7 @@ const indexRoute = require('./routes/index');
 const studentsRoute = require('./routes/students');
 
 // DB Variables
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const databaseUrl = process.env.DATABASE_URL;
 
 

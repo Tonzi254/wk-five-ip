@@ -9,10 +9,10 @@ module.exports = router;
 
 router.post('/', async (req, res) => {
     const data = new student({
+        student_no: req.body.student_no,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
 		grade: req.body.grade,
-		course: req.body.course,
     });
 
     try {
