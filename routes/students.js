@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/_:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -43,7 +43,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/_:id', async (req, res) => {
 
     try {
         const id = req.params.id;
