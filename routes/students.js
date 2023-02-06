@@ -1,6 +1,5 @@
 const express = require('express');
-
-const student = require ('../models/model');
+const student = require('../models/model');
 
 
 const router = express.Router();
@@ -12,7 +11,7 @@ router.post('/', async (req, res) => {
         student_no: req.body.student_no,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-		grade: req.body.grade,
+        grade: req.body.grade,
     });
 
     try {
@@ -37,16 +36,10 @@ router.patch('/:id', async (req, res) => {
         const id = req.params.id;
         const updatedData = req.body;
 
-        console.log(id);
-        console.log(updatedData);
-    
         const data = await student.findByIdAndUpdate(id, updatedData, { new: true });
         res.status(200).json(data);
     } catch (error) {
-        res.status(400).json({ message: error.message });
-
-
-        
+        res.status(404).json({ message: error.message });
     }
 });
 
@@ -56,9 +49,9 @@ router.delete('/:id', async (req, res) => {
         const id = req.params.id;
 
         const data = await student.findByIdAndDelete(id);
-        res.status(200).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted`});
+        res.status(204).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted` });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 });
 
