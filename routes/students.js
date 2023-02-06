@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -47,13 +47,13 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
 
     try {
         const id = req.params.id;
 
         const data = await student.findByIdAndDelete(id);
-        res.status(204).json({message: `The student named ${data.first_name} ${data.last_name} has been deleted`});
+        res.status(204).json({ message: `The student named ${data.first_name} ${data.last_name} has been deleted`});
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
