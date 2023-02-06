@@ -1,6 +1,6 @@
 const express = require('express');
-const Student = require('../models/models');
 const mongoose= require('mongoose');
+const Student = require('../routes/routes');
 
 const router= express.Router();
 
@@ -8,7 +8,7 @@ const router= express.Router();
 //CRUD routes
 
 //Create
-router.post('/students', (req, res) => {
+router.post('/students', async (req, res) => {
 	try {
 		let { student_no, first_name, last_name, grade, course } = req.body;
 		let _id = mongoose.Types.ObjectId(); // Generating new MongoDB _ID
@@ -30,7 +30,7 @@ router.post('/students', (req, res) => {
 /**
  * Find all students
  */
-router.get('/students', (req, res) => {
+router.get('/students', async (req, res) => {
 	try {
 		Student.find({}, (err, students) => {
 			// Error returned
@@ -51,7 +51,7 @@ router.get('/students', (req, res) => {
 /**
  * Update student
  */
-router.put('/students', (req, res) => {
+router.patch('/students', async (req, res) => {
 	try {
 		let {_id,student_no, first_name, last_name, grade, course } = req.body;
 
@@ -77,7 +77,7 @@ router.put('/students', (req, res) => {
 /**
  * Delete student
  */
-router.delete('/students', (req, res) => {
+router.delete('/students', async (req, res) => {
 	try {
 		const _id = req.body._id || null;
 		// Remove student by it's _ID
