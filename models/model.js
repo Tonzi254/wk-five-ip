@@ -24,10 +24,6 @@ const studentsSchema = new mongoose.Schema({
         type: String,
         default: "DevOps",
     },
-    __v: {
-        versionKey: false
-    },
-
 });
 
 module.exports = mongoose.model('students', studentsSchema)
