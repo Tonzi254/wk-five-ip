@@ -4,8 +4,6 @@ const student = require('../models/model');
 
 const router = express.Router();
 
-module.exports = router;
-
 router.post('/', async (req, res) => {
     const data = new student({
         student_no: req.body.student_no,
@@ -42,16 +40,17 @@ router.patch('/', async (req, res) => {
     }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const dataDelete = await student.findByIdAndDelete(id);
         res.status(200).json(dataDelete);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 });
 
+module.exports = router;
 
 
 
