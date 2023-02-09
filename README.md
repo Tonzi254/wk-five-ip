@@ -1,6 +1,6 @@
-# Project Description
+### Project Description
 
-## Project Authors
+### Project Authors
 
 1. Daniel Rotich
 2. Grace  Nyambura
@@ -9,7 +9,7 @@
 
 ### Installation
 
-- Team Members Project Requirements
+- Project Requirements
 
 1. Install npm >
 2. Install nodeJS >
@@ -27,14 +27,14 @@
 
 1. Initialize your application > $ npm init -y
 2. In the package.json file that is autoimatically created scroll to the scripts section and add a comma after the test script and below that line add below script to start your application
-"start": "node ."
+"start": "node index.js"
 3. Code your APP (models, routes and index files)
 4. Connect your APP to the db using .env file
 5. Run your application $ npm run start
 6. Test the CRUD database operations using Postman or CURL on CLI
 7. Host the application on Render
 
-#### Technologies Used
+#### Tools Used
 
 1. JavaScript
 2. NodeJS
@@ -55,4 +55,6 @@ I will try and respond as soon as possible. Thank you!
 #### License
 
 <https://github.com/Tonzi254/wk-five-ip/blob/main/LICENSE>
-@2023
+
+###Copyright
+Daniel Rotich et al. 2023
