@@ -10,7 +10,6 @@ const studentsRoute = require('./routes/students');
 const port = process.env.PORT;
 const databaseUrl = process.env.DATABASE_URL;
 
-
 //Connect to the database
 mongoose.connect(databaseUrl);
 const database = mongoose.connection;
