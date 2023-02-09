@@ -1,4 +1,5 @@
 ### Project Description
+This is an application that allows users to view the student details including their names, grade and course
 
 ### Project Authors
 
@@ -56,5 +57,5 @@ I will try and respond as soon as possible. Thank you!
 
 <https://github.com/Tonzi254/wk-five-ip/blob/main/LICENSE>
 
-###Copyright
+### Copyright
 Daniel Rotich et al. 2023
