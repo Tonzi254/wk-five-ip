@@ -1,15 +1,15 @@
 # Project Description
 
-# Project Authors
+## Project Authors
 
 1. Daniel Rotich
 2. Grace  Nyambura
 3. Mildred Awuor
 4. Josephat OleShangiti
 
-# Installation
+### Installation
 
-Project Requirements
+- Project Requirements
 ====================
 
 1. Install npm >
@@ -24,7 +24,7 @@ Project Requirements
 10.Install nodemon > $ npm install -g nodemon
 11.Install nodemon as a dependency > $ npm install --save-dev nodemon
 
-Creating and running your application
+- Creating and running your application
 =====================================
 
 1. Initialize your application > $ npm init -y
@@ -35,7 +35,7 @@ Creating and running your application
 5. Run your application $ npm run start
 6. Test the CRUD database operations using Postman or CURL on CLI
 
-# Technologies Used
+#### Technologies Used
 
 1. JavaScript
 2. NodeJS
@@ -48,12 +48,12 @@ Creating and running your application
 9. nodemon
 10. dotEnv
 
-# Contact Information
+### Contact Information
 
 Incase you have any question or contributions you can reach out to me via email me at danteskilz@gmail.com
 I will try and respons as soon as possible. Thank you!
 
-# License
+#### License
 
 <https://github.com/Tonzi254/wk-five-ip/blob/main/LICENSE>
 @2023
