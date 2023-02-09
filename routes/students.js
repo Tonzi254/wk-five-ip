@@ -1,7 +1,6 @@
 const express = require('express');
 const student = require('../models/model');
 
-
 const router = express.Router();
 
 router.post('/', async (req, res) => {

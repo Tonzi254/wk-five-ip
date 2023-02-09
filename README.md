@@ -9,8 +9,7 @@
 
 ### Installation
 
-- Project Requirements
-====================
+- Team Members Project Requirements
 
 1. Install npm >
 2. Install nodeJS >
@@ -21,11 +20,10 @@
 7. Install express > $ npm install express
 8. Install mongoose > $ npm install mongoose
 9. Install dotEnv > $ npm install dotenv
-10.Install nodemon > $ npm install -g nodemon
-11.Install nodemon as a dependency > $ npm install --save-dev nodemon
+10. Install nodemon > $ npm install -g nodemon
+11. Install nodemon as a dependency > $ npm install --save-dev nodemon
 
-- Creating and running your application
-=====================================
+- Creating and running the application
 
 1. Initialize your application > $ npm init -y
 2. In the package.json file that is autoimatically created scroll to the scripts section and add a comma after the test script and below that line add below script to start your application
@@ -34,6 +32,7 @@
 4. Connect your APP to the db using .env file
 5. Run your application $ npm run start
 6. Test the CRUD database operations using Postman or CURL on CLI
+7. Host the application on Render
 
 #### Technologies Used
 
@@ -50,8 +49,8 @@
 
 ### Contact Information
 
-Incase you have any question or contributions you can reach out to me via email me at danteskilz@gmail.com
-I will try and respons as soon as possible. Thank you!
+Incase you have any question or contributions you can reach out to me via email me at danteskilz@gmail.com.
+I will try and respond as soon as possible. Thank you!
 
 #### License
 
