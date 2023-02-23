@@ -33,50 +33,21 @@ router.patch('/', async (req, res) => {
     const updatedData = req.body;
     try {
         const dataUpdate = await student.findByIdAndUpdate(id, updatedData, { new: true });
-        res.status(200).json(dataUpdate);
+        res.status(200).json({ success: true, dataUpdate });
     } catch (error) {
         console.log(error);
         res.status(400).json({ message: 'An error occured' });
     }
 });
 
-
-// router.delete('/', async (req, res) => {
-//     const id = req.params.id;
-//     try {
-//         const dataDelete = await student.findByIdAndDelete(id);
-//         res.status(200).json(dataDelete);
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
-
-router.delete('/', async (req, res) => {
-    const id = req.params.id;
+router.delete('/:id', async (req, res) => {
     try {
-        const dataDelete = await student.findByIdAndDelete(id);
-        res.status(200).json({
-            message: 'Successfully deleted the data',
-            data: dataDelete
-        });
+        const dataDelete = await student.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: 'Successfully deleted the data', data: dataDelete });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
-
-
-// router.delete('/:id', async (req, res) => {
-//     try {
-//         const dataDelete = await student.findByIdAndDelete(req.params.id);
-//         res.status(200).json({
-//             message: 'Successfully deleted the data',
-//             data: dataDelete
-//         });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
-
 
 module.exports = router;
 
