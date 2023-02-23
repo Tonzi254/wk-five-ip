@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/', async (req, res) => {
     const id = req.params.id;
     const updatedData = req.body;
 
@@ -56,7 +56,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         const studentRecord = await student.findById(req.params.id);
         if (!studentRecord) { 
