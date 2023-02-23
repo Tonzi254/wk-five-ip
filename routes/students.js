@@ -28,12 +28,13 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const updatedData = req.body;
+router.patch('/id', async (req, res) => {
 
-        const studentData = await student.findByIdAndUpdate(id, {$set: updatedData}, { new: true });
+    const { id } = req.params;
+    const updatedData = req.body;
+
+    try {
+        const studentData = await student.findByIdAndUpdate(id, { $set: updatedData }, { new: true });
         res.status(200).json(studentData);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -41,9 +42,10 @@ router.patch('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
 
+    const id = req.params.id;
+
+    try {
         const studentData = await student.findByIdAndDelete(id);
         res.status(204).json({ message: `The student named ${studentData.first_name} ${studentData.last_name} has been deleted` });
     } catch (error) {
