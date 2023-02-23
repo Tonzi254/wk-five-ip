@@ -28,30 +28,47 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/', async (req, res) => {
-
-    const { id } = req.params;
-    const updatedData = req.body;
-
+router.patch('/:id', async (req, res) => {
     try {
-        const studentData = await student.findByIdAndUpdate(id, { $set: updatedData }, { new: true });
-        res.status(200).json(studentData);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+      const { id } = req.params;
+      const body = req.body;
+  
+      if (!ObjectID.isValid(id)) {
+        return res.status(404).json({ error: 'Invalid ID' })
+      }
+      const updateStudent = await student.findOneAndUpdate({
+        _id: id
+      }, { $set: body }, { new: true })
+  
+      if (!updateStudent) {
+        return res.status(404).json({ error: 'Unable to update that post' })
+      }
+  
+      res.status(200).json(post)
+    } catch (err) {
+      res.status(400).send({ error: 'Something went wrong' })
     }
-});
+  });
 
-router.delete('/', async (req, res) => {
-
-    const id = req.params.id;
-
+router.delete('/:id', async (req, res) => {
     try {
-        const studentData = await student.findByIdAndDelete(id);
-        res.status(204).json({ message: `The student named ${studentData.first_name} ${studentData.last_name} has been deleted` });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+      const { id } = req.params;
+  
+      if (!ObjectID.isValid(id)) {
+        return res.status(404).send('Invalid ID')
+      }
+  
+      const deleteStudent = await student.findOneAndRemove({ _id: id})
+  
+      if (!deleteStudent) {
+        return res.status(400).json({ error: 'Unable to delete that post' })
+      }
+  
+      res.status(200).json({ error: 'Post has been removed successfully!' })
+    } catch (err) {
+      res.status(400).send({ error: 'Something went wrong' })
     }
-});
+  });
 
 module.exports = router;
 
