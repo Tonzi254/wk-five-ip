@@ -28,24 +28,45 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.patch('/', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     const id = req.params.id;
     const updatedData = req.body;
+
     try {
-        const dataUpdate = await student.findByIdAndUpdate(id, updatedData, { new: true });
-        res.status(200).json({ success: true, dataUpdate });
+
+        const studentRecord = await student.findById(req.params.id);
+        if (!studentRecord) { 
+            return res.status(404).json({ message: 'No records found with provided id' });
+        } 
+
+        let { student_no, first_name, last_name, grade, course } = updatedData;
+
+        // Find the student by it's ID and update it
+        studentRecord = await student.findByIdAndUpdate(
+            id,
+            { student_no, first_name, last_name, grade, course },
+            { new: true }
+        );
+
+        if (student) {
+            res.status(200).json({ message: 'Student record updated successfully', data: student });
+        }
     } catch (error) {
-        console.log(error);
-        res.status(400).json({ message: 'An error occured' });
+        return res.status(400).json({ success: false, error: error.message });
     }
 });
 
 router.delete('/:id', async (req, res) => {
     try {
+        const studentRecord = await student.findById(req.params.id);
+        if (!studentRecord) { 
+            return res.status(404).json({ message: 'No records found with provided Id' });
+        } 
+
         const dataDelete = await student.findByIdAndDelete(req.params.id);
         res.status(200).json({ message: 'Successfully deleted the data', data: dataDelete });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: 'Unexpected error occurred while deleting the record.' });
     }
 });
 
