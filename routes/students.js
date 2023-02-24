@@ -29,9 +29,11 @@ router.get('/', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
+
+    const { id } = req.params;
+    const body = req.body;
+
     try {
-      const { id } = req.params;
-      const body = req.body;
   
       if (!ObjectID.isValid(id)) {
         return res.status(404).json({ error: 'ID Not Found' });
@@ -48,9 +50,10 @@ router.patch('/:id', async (req, res) => {
   });
 
 router.delete('/:id', async (req, res) => {
+
+    const { id } = req.params;
+
     try {
-      const { id } = req.params;
-  
       if (!ObjectID.isValid(id)) {
         return res.status(404).send('Invalid ID');
     }
